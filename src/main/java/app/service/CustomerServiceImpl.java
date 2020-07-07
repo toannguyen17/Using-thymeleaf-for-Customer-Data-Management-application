@@ -10,29 +10,18 @@ import java.util.Map;
 public class CustomerServiceImpl implements ICustomerService {
 	private static CustomerServiceImpl instance;
 	private static Map<Long, Customer> customers;
-	private static Long id = 0L;
-	private boolean addData = false;
+	private static Long id = 3L;
 
-	private CustomerServiceImpl(){
+	static {
 		customers = new HashMap<>();
+		Customer customer = new Customer(1L,"Toan", "toan@gmail.com", "vinh phuc");
+		Customer customer2 = new Customer(2L,"Nam", "nam@gmail.com", "vinh phuc");
+
+		customers.put(1L, customer);
+		customers.put(2L, customer2);
 	}
 
-	public static CustomerServiceImpl getInstance() {
-		if (instance == null){
-			synchronized (CustomerServiceImpl.class){
-				instance = new CustomerServiceImpl();
-			}
-		}
-		return instance;
-	}
-
-	public void insertDemo(){
-		if (addData) return;
-		Customer customer = new Customer("Toan", "toan@gmail.com", "vinh phuc");
-		Customer customer2 = new Customer("Nam", "nam@gmail.com", "vinh phuc");
-
-		save(customer);
-		save(customer2);
+	public CustomerServiceImpl(){
 	}
 
 	@Override
@@ -49,7 +38,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Override
 	public void save(Customer customer) {
 		if (customer.getId() == null || customer.getId() == 0L){
-			Long newId = ++id;
+			Long newId = id++;
 			customer.setId(newId);
 			customers.put(newId, customer);
 		}else{

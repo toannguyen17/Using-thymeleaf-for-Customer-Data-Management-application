@@ -58,6 +58,6 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
 	@Bean
 	@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 	public ICustomerService customerService(){
-		return CustomerServiceImpl.getInstance();
+		return new CustomerServiceImpl();
 	}
 }
