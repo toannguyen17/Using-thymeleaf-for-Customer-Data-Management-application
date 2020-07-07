@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer manager</title>
+</head>
+<body>
+<center>
+    <h2>Customer list</h2>
+    <a href="/customers/add">Add customer</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Address</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="customer: ${list}">
+            <tr>
+                <td th:text="${customer.getId()}"></td>
+                <td th:text="${customer.getName()}"></td>
+                <td th:text="${customer.getEmail()}"></td>
+                <td th:text="${customer.getAddress()}"></td>
+                <td>
+                    <a th:href="@{'/customers/edit/'+${customer.getId()}}">Edit</a>
+                    <a th:href="@{'/customers/delete/'+${customer.getId()}}">Delete</a>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</center>
+</body>
+</html>

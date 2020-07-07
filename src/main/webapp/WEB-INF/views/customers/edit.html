@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer manager</title>
+</head>
+<body>
+<center>
+    <h2>Edit customer</h2>
+    <span th:if="${mess != null}" th:text="${mess}"></span>
+    <form method="post">
+        <table th:object="${customer}">
+            <input type="hidden" th:field="*{id}">
+            <tbody>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" th:field="*{name}"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" th:field="*{email}"></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><input type="text" th:field="*{address}"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Save"></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+    <br />
+    <br />
+    <a href="/customers/">Back to list</a>
+</center>
+</body>
+</html>
